@@ -7,7 +7,7 @@ let package = Package(
     name: "SwiftNetworkWrap",
     platforms: [
         .iOS(.v13),
-        .macOS(.v11)
+        .macOS(.v10_15)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
