@@ -57,12 +57,12 @@ fileprivate extension Publisher where Output == URLSession.DataTaskPublisher.Out
 
 // - MARK: Example Usage
 
-final class DefaultNetworkSessionManager: NetworkSessionManager {
-    var baseURL: String
-    var session: URLSession
-    var bgQueue: DispatchQueue
+public final class DefaultNetworkSessionManager: NetworkSessionManager {
+    public var baseURL: String
+    public var session: URLSession
+    public var bgQueue: DispatchQueue
 
-    init(baseURL: String,
+    public init(baseURL: String,
          session: URLSession = URLSession.configuredURLSession(),
          bgQueue: DispatchQueue = DispatchQueue(label: "bg_parse_queue")) {
         self.baseURL = baseURL
@@ -72,7 +72,7 @@ final class DefaultNetworkSessionManager: NetworkSessionManager {
 }
 
 extension URLSession {
-    static func configuredURLSession() -> URLSession {
+    public static func configuredURLSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 120
