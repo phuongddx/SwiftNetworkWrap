@@ -10,42 +10,28 @@ import Foundation
 public protocol ApiTarget {
     var path: String { get }
     var method: String { get }
-    var hearders: [String: String]? { get }
+    var headers: [String: String]? { get }
 
+    func queryParameters() -> [String: String]?
     func body() throws -> Data?
 }
 
 public extension ApiTarget {
     func urlRequest(baseURL: String) throws -> URLRequest {
-        guard let url = URL(string: baseURL + path) else {
+        guard var urlComponents = URLComponents(string: baseURL) else {
+            throw ApiError.invalidUrl
+        }
+        urlComponents.path = path
+        if let queryItems = queryParameters() {
+            urlComponents.queryItems = queryItems.map { URLQueryItem(name: $0.key, value: $0.value)}
+        }
+        guard let url = urlComponents.url else {
             throw ApiError.invalidUrl
         }
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.allHTTPHeaderFields = hearders
+        request.allHTTPHeaderFields = headers
         request.httpBody = try body()
         return request
-    }
-}
-
-
-// Remvoe
-enum MoviesApiTarget: ApiTarget {
-    case trendingToday
-    
-    var path: String {
-        ""
-    }
-    
-    var method: String {
-        "GET"
-    }
-    
-    var hearders: [String : String]? {
-        [:]
-    }
-    
-    func body() throws -> Data? {
-        nil
     }
 }
