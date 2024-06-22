@@ -12,7 +12,7 @@ public protocol ApiTarget {
     var method: String { get }
     var headers: [String: String]? { get }
 
-    func queryParameters() -> [String: String]?
+    func queryParameters() -> [String: Any]?
     func body() throws -> Data?
 }
 
@@ -23,7 +23,7 @@ public extension ApiTarget {
         }
         urlComponents.path = path
         if let queryItems = queryParameters() {
-            urlComponents.queryItems = queryItems.map { URLQueryItem(name: $0.key, value: $0.value)}
+            urlComponents.queryItems = queryItems.map { URLQueryItem(name: $0.key, value: "\($0.value)")}
         }
         guard let url = urlComponents.url else {
             throw ApiError.invalidUrl
