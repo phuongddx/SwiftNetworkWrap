@@ -8,8 +8,9 @@
 import Foundation
 import Combine
 
+public typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
+
 public class NetworkClientManager<Target: RequestBuilder> {
-    typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
 
     // The URLSession client is use to call request with URLSession Data Task Publisher
     private let clientURLSession: NetworkClient
@@ -18,7 +19,7 @@ public class NetworkClientManager<Target: RequestBuilder> {
         self.clientURLSession = clientURLSession
     }
 
-    func request<M: Decodable, T: Scheduler>(
+    public func request<M: Decodable, T: Scheduler>(
         _ request: Target,
         decoder: JSONDecoder = JSONDecoder(),
         scheduler: T,

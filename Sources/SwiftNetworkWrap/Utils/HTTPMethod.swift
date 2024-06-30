@@ -13,8 +13,8 @@ import Foundation
  */
 public enum HTTPMethod: Equatable {
 
-/** The GET method requests a representation of the specified resource.
- Requests using GET should only retrieve data. */
+    /** The GET method requests a representation of the specified resource.
+     Requests using GET should only retrieve data. */
     case get
 
      /**
