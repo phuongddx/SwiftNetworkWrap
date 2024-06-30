@@ -10,7 +10,7 @@ import Combine
 
 public typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
 
-public class NetworkClientManager<Target: RequestBuilder> {
+open class NetworkClientManager<Target: RequestBuilder> {
 
     // The URLSession client is use to call request with URLSession Data Task Publisher
     private let clientURLSession: NetworkClient
