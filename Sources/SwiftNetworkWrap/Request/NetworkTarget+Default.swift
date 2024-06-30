@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NetworkTarget {
+public extension NetworkTarget {
 
     var bodyEncoding: BodyEncoding? {
         return nil

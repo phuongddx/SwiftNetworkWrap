@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Dictionary where Key == String, Value == String {
+public extension Dictionary where Key == String, Value == String {
     /// To encode Query parameters as URLEncoded
     func urlEncodedQueryParams() -> String {
         let pairs = reduce([]) { current, keyValPair -> [String] in
@@ -20,7 +20,7 @@ extension Dictionary where Key == String, Value == String {
     }
 }
 
-extension Dictionary where Key == String, Value == Any {
+public extension Dictionary where Key == String, Value == Any {
     /// To encode request body as URLEncoded
     func urlEncodedBody() throws -> Data {
         var bodyStr = [String]()
